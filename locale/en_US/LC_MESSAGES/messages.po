@@ -1,0 +1,72 @@
+# ReHydrate translations.
+# Copyright (C) 2023 ReHydrate's Luca Gasperini <luca.gasperini@xsoftware.it>
+# This file is distributed under the same license as the ReHydrate package.
+# Luca Gasperini <luca.gasperini@xsoftware.it>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ReHydrate\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-14 04:34+0100\n"
+"PO-Revision-Date: 2023-03-16 10:37+0100\n"
+"Last-Translator: Luca Gasperini <luca.gasperini@xsoftware.it>\n"
+"Language-Team: Luca Gasperini <luca.gasperini@xsoftware.it>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "login_user"
+msgstr "Username..."
+
+msgid "login_pass"
+msgstr "Password..."
+
+msgid "login_button"
+msgstr "Access"
+
+msgid "header_home"
+msgstr "ReHydrate - Home"
+
+msgid "drink_button"
+msgstr "Drink!"
+
+msgid "header_today"
+msgstr "Today's activities"
+
+msgid "header_history"
+msgstr "History of activities"
+
+msgid "label_history_start_time"
+msgstr "Starting time:"
+
+msgid "label_history_end_time"
+msgstr "Ending time:"
+
+msgid "history_mode_daily"
+msgstr "Daily"
+
+msgid "history_mode_weekly"
+msgstr "Weekly"
+
+msgid "history_mode_mounthly"
+msgstr "Mountly"
+
+msgid "history_mode_yearly"
+msgstr "Yearly"
+
+msgid "history_mode_header"
+msgstr "Group by"
+
+msgid "header_login"
+msgstr "ReHydrate - Login"
+
+msgid "history_time_header"
+msgstr "Filter by"
+
+msgid "history_mode_hourly"
+msgstr "Hourly"
+
+msgid "disconnect_button"
+msgstr "Disconnect"
