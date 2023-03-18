@@ -33,6 +33,11 @@
 
 DATABASE="rehydrate"
 
+if [ -z $1 ] || [ -z $2 ]; then
+        echo "Cannot add user without username and password!"
+        exit 1
+fi
+
 USER_NAME=$1
 USER_PASS=$(php -r "echo hash(\"sha256\", \"$2\");")
 WATER_DAILY="2500"
