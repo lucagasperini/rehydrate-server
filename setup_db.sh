@@ -36,6 +36,11 @@ PASS=$2
 DATABASE="rehydrate"
 FILE_SETUP="setup.sql"
 
+if [ -z $USER ] || [ -z $PASS ]; then
+        echo "Cant setup postgresql database without username and password!"
+        exit 1
+fi
+
 echo "Setup postgresql database"
 sudo -u postgres createuser $USER
 sudo -u postgres createdb $DATABASE
