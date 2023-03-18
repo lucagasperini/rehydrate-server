@@ -46,4 +46,4 @@ sudo -u postgres createuser $USER
 sudo -u postgres createdb $DATABASE
 sudo -u postgres psql --command="alter user $USER with encrypted password '$PASS';"
 sudo -u postgres psql --command="grant all privileges on database $DATABASE to $USER;"
-sudo -u postgres psql -U $USER -d $DATABASE -a -f $FILE_SETUP
+PGPASSWORD=$PASS sudo -u postgres psql -U $USER -d $DATABASE -a -f $FILE_SETUP -h localhost
