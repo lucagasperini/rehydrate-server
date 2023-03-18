@@ -28,22 +28,13 @@
 # =============================================================================
 # Description
 # =============================================================================
-: 'Setup postgresql database of ReHydrate server'
+: 'Create user of ReHydrate server'
 # =============================================================================
 
-USER=$1
-PASS=$2
 DATABASE="rehydrate"
-FILE_SETUP="setup.sql"
 
-if [ -z $USER ] || [ -z $PASS ]; then
-        echo "Cant setup postgresql database without username and password!"
-        exit 1
-fi
+USER_NAME=$1
+USER_PASS=$(php -r "echo hash(\"sha256\", \"$2\");")
+WATER_DAILY="2500"
 
-echo "Setup postgresql database"
-sudo -u postgres createuser $USER
-sudo -u postgres createdb $DATABASE
-sudo -u postgres psql --command="alter user $USER with encrypted password '$PASS';"
-sudo -u postgres psql --command="grant all privileges on database $DATABASE to $USER;"
-sudo -u postgres PGPASSWORD=$PASS psql -U $USER -d $DATABASE -a -f $FILE_SETUP -h localhost
+sudo -u postgres psql -d $DATABASE --command="INSERT INTO account VALUES ('$USER_NAME', '$USER_PASS',$WATER_DAILY);"
