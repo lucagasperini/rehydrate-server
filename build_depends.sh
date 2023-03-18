@@ -31,9 +31,17 @@
 : 'Build depends for ReHydrate server'
 # =============================================================================
 
-cd 3rd-party/Chart.js
-npm install
-npm run build
-cd ../../
-mkdir src/chart-js
-cp 3rd-party/Chart.js/dist/* src/chart-js/
+if [ ! -d "src/chart-js" ]; then
+    echo "Building chart.js"
+    cd 3rd-party/Chart.js
+    npm install
+    npm run build
+    cd ../../
+    mkdir src/chart-js
+    cp 3rd-party/Chart.js/dist/* src/chart-js/
+fi
+
+if [ ! -d "src/sounds" ]; then
+    echo "Adding Notifications OGG"
+    cp -r 3rd-party/Notifications/OGG src/sounds
+fi

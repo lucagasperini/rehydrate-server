@@ -31,11 +31,11 @@ async function auth_call(user, pass) {
         const response = await fetch('auth.php', {
                 method: 'POST',
                 body: new URLSearchParams({u: user, p: pass}),
-                mode: "cors", // no-cors, *cors, same-origin
-                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: "same-origin", // include, *same-origin, omit
-                redirect: "error", // manual, *follow, error
-                referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                mode: "cors", 
+                cache: "no-cache", 
+                credentials: "same-origin",
+                redirect: "error", 
+                referrerPolicy: "no-referrer",
 
                 headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -54,12 +54,11 @@ async function rest_call(data = {}) {
         const response = await fetch('rest.php', {
                 method: 'POST',
                 body: new URLSearchParams(data),
-                mode: "cors", // no-cors, *cors, same-origin
-                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: "same-origin", // include, *same-origin, omit
-                redirect: "error", // manual, *follow, error
-                referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                redirect: "error",
+                referrerPolicy: "no-referrer",
                 headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                 }
@@ -264,8 +263,6 @@ function onload_home() {
         var timer_notify = function() {
                 var notify_hour = Number(localStorage.getItem("notify_hour"));
                 const d = new Date().getHours();
-                console.log(d);
-                console.log(notify_hour);
                 if(notify_hour == d) {
                         notify_me("Drink water!");
                         window.setTimeout(timer_notify, 1000 * 60 * 10); // 10 min
@@ -273,19 +270,13 @@ function onload_home() {
         }
 
         window.setTimeout(timer_notify, 1000);
+        
 }
 
-function timer_notify() {
-        var notify_hour = Number(localStorage.getItem("notify_hour"));
-        const d = new Date().getHours();
-        console.log(d);
-        console.log(notify_hour);
-        if(notify_hour == d) {
-                notify_me("Drink water!");
-                clearInterval(timer_notify);
-                setTimeout(timer_notify, 1000 * 10);
-        }
-
+function do_notify(text) {
+        const notification = new Notification(text);
+        var snd = new Audio("sounds/Enharpment.ogg");
+        snd.play();
 }
 
 function notify_me(text) {
@@ -295,22 +286,20 @@ function notify_me(text) {
         } else if (Notification.permission === "granted") {
           // Check whether notification permissions have already been granted;
           // if so, create a notification
-          const notification = new Notification(text);
-          // …
+          do_notify(text);
         } else if (Notification.permission !== "denied") {
           // We need to ask the user for permission
           Notification.requestPermission().then((permission) => {
             // If the user accepts, let's create a notification
             if (permission === "granted") {
-              const notification = new Notification(text);
-              // …
+                do_notify(text);
             }
           });
         }
       
         // At last, if the user has denied notifications, and you
         // want to be respectful there is no need to bother them anymore.
-      }
+}
       
 
 function set_chart_history_mode(mode) {
@@ -339,7 +328,6 @@ function auth_web() {
         auth_call(login_user, login_pass).then(
                 data => { set_cookie("token", data, 365); window.location.reload(); }
         );
-        
 }
 
 function onclick_disconnect_button() {

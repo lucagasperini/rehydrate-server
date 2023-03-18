@@ -1,3 +1,4 @@
 *.mo
 config.php
-chart-js/
+src/chart-js/
+src/sounds/

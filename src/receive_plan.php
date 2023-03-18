@@ -86,8 +86,9 @@ if ($plan === "today") {
         $need_result = pg_fetch_result($need_result_query, 0);
 
         $plan_result = [];
+        $shot_drink_ml = 400;
 
-        $num_drink = ceil($need_result / 200);
+        $num_drink = ceil($need_result / $shot_drink_ml);
         if ($num_drink === 0) {
                 return ["status" => "OK", "data" => [], "need" => 0];
         }
@@ -96,7 +97,11 @@ if ($plan === "today") {
 
         $current_hour = date("H", $time_now);
         $last_drink_hour = substr($today_result[0]['date'], 0, -3);
-        $starting_hour = $current_hour;
+        if ($last_drink_hour == $current_hour) {
+                $starting_hour = $current_hour + 1;
+        } else {
+                $starting_hour = $current_hour;
+        }
 
 
         $remaining_hours = 23 - $starting_hour;
@@ -104,10 +109,10 @@ if ($plan === "today") {
         $drink_interval = ceil($remaining_hours / $num_drink);
 
         for ($i = 0; $i < $num_drink; $i++) {
-                $hour_planned = $starting_hour + ($drink_interval * ($i + 1));
+                $hour_planned = $starting_hour + ($drink_interval * ($i));
                 if ($hour_planned < 24) {
                         $plan_result[$i]['date'] = date("H:00", strtotime($hour_planned . ":00"));
-                        $plan_result[$i]['quantity'] = 200;
+                        $plan_result[$i]['quantity'] = $shot_drink_ml;
                 }
         }
 
