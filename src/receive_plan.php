@@ -101,12 +101,14 @@ if ($plan === "today") {
 
         $remaining_hours = 23 - $starting_hour;
 
-        $drink_interval = floor($remaining_hours / $num_drink);
+        $drink_interval = ceil($remaining_hours / $num_drink);
 
         for ($i = 0; $i < $num_drink; $i++) {
                 $hour_planned = $starting_hour + ($drink_interval * ($i + 1));
-                $plan_result[$i]['date'] = date("H:00", strtotime($hour_planned . ":00"));
-                $plan_result[$i]['quantity'] = 200;
+                if ($hour_planned < 24) {
+                        $plan_result[$i]['date'] = date("H:00", strtotime($hour_planned . ":00"));
+                        $plan_result[$i]['quantity'] = 200;
+                }
         }
 
         return ["status" => "OK", "data" => $plan_result, "need" => $need_result];
