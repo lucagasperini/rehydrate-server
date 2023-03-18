@@ -33,12 +33,11 @@
 
 if [ ! -d "src/chart-js" ]; then
     echo "Building chart.js"
-    cd 3rd-party/Chart.js
-    npm install
-    npm run build
+    cd 3rd-party/Chart-js
+    npm install && npm run build
     cd ../../
     mkdir src/chart-js
-    cp 3rd-party/Chart.js/dist/* src/chart-js/
+    cp 3rd-party/Chart-js/dist/* src/chart-js/
 fi
 
 if [ ! -d "src/sounds" ]; then
