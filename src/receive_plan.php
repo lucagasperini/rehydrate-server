@@ -8,8 +8,8 @@ if (!isset($AUTHID) || $AUTHID === false) {
 
 if (!isset($plan) || $plan === false) {
         error_log("Plan not defined.");
-        http_response_code(500);
-        return ["status" => "INVALID_REQUEST"];
+        http_response_code(400);
+        exit(0);
 }
 
 if ($plan === "today") {
