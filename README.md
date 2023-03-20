@@ -183,14 +183,16 @@ This action will ask to the server a plan of the day for user drink.
 
 - If successful, it will return HTTP CODE 200 and JSON:
   - status: `OK`
-  - data: array
-    - date: hour when user should drink water
-    - time: amount of water to drink at that time
+  - data:
+    - array:
+      - date: hour when user should drink water
+      - time: amount of water to drink at that time
+    - need: amount of mL of water need to drink today
 - If you didnt provide a valid token, it will just return HTTP CODE 401.
 - If there is a misconfiguration or bug into backend it will just return HTTP CODE 500 and JSON with field status `SQL_ERR`.
 
 **Example:**
 
-`curl -X POST -d 'token=07c546509aded72ee673cd43ee1018e60483670940b96a47bff6a0c08859ef01d1b4c22afbdb3e7351768cf08e98a9686d8fcfb7ea90e805bbe05f05b5e94b9b16f926157fce8376dd4e98f76c159cd60e5643641d697c25281cadba054e982200205796a68743d46c4897ff3a483b9b02391bc697f7a8259d3c89c56a6dd3272143a5d7ee5e6df1ca79e49c0d29e3e316e37bcf4c0962bdaed5c0fcb0fbcb8ab34a14e37d942fc259daac1d411f9f2a373c8ff6f648d6d1432d1f8b5d5565e2834df157793fda25d37dde69bc89007978fbefbd2e14108a2f367f6e5e915a8e2f8e543a5ae5d4d798690df8630d277a31ee573d1c6401f8a0e6dc20adebb604' -d 'type=receive' -d 'plan=today' http://localhost:8000/rest.php' -d 'type=receive' -d 'time_start=today' http://localhost:8000/rest.php`
+`curl -X POST -d 'token=07c546509aded72ee673cd43ee1018e60483670940b96a47bff6a0c08859ef01d1b4c22afbdb3e7351768cf08e98a9686d8fcfb7ea90e805bbe05f05b5e94b9b16f926157fce8376dd4e98f76c159cd60e5643641d697c25281cadba054e982200205796a68743d46c4897ff3a483b9b02391bc697f7a8259d3c89c56a6dd3272143a5d7ee5e6df1ca79e49c0d29e3e316e37bcf4c0962bdaed5c0fcb0fbcb8ab34a14e37d942fc259daac1d411f9f2a373c8ff6f648d6d1432d1f8b5d5565e2834df157793fda25d37dde69bc89007978fbefbd2e14108a2f367f6e5e915a8e2f8e543a5ae5d4d798690df8630d277a31ee573d1c6401f8a0e6dc20adebb604' -d 'type=receive' -d 'time_start=today' http://localhost:8000/rest.php`
 > {"status":"OK","data":[{"date":"16:00","quantity":400},{"date":"18:00","quantity":400},{"date":"20:00","quantity":400},{"date":"22:00","quantity":400}],"need":"2300"}
 
