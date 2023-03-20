@@ -2,7 +2,8 @@
 
 ### Introduction
 ReHydrate is a program that helps you to stay hydrated by creating a history, planning drink time on day and fire a notification when you need a drink =)
-This server is divided into two parts: REST server and Web Application
+
+This server is divided in two parts: **REST server** and **Web Application**.
 
 ### Technologies
 1. PostgreSQL
