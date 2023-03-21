@@ -60,7 +60,7 @@ function receive_sum($db_conn, $token_id, $time_start, $time_end, $query_label, 
         if ($prepared_query === false) {
                 error_log(pg_last_error($db_conn));
                 http_response_code(500);
-                return ["status" => "SQL_ERR"];
+                return;
         }
 
         $result_query = pg_execute(
@@ -76,14 +76,14 @@ function receive_sum($db_conn, $token_id, $time_start, $time_end, $query_label, 
         if ($result_query === false) {
                 error_log(pg_last_error($db_conn));
                 http_response_code(500);
-                return ["status" => "SQL_ERR"];
+                return;
         }
 
         $result = [];
         while (($row = pg_fetch_array($result_query, NULL, PGSQL_ASSOC)) !== false) {
                 $result[] = $row;
         }
-        return ["status" => "OK", "data" => $result];
+        return $result;
 }
 
 if ($mode_sum === "hourly") {

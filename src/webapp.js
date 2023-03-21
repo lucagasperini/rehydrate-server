@@ -143,7 +143,7 @@ function init_chart_day(name, data, type = "bar") {
         var j = 0;
         var y_values_history = [];
         for (let i = 0; i < x_values.length; i++) {
-                const element = data.history["data"][j];
+                const element = data.history[j];
                 
                 if(element && element.date.slice(11) === x_values[i]) {
                         y_values_history[i] =  element.quantity;
@@ -156,7 +156,7 @@ function init_chart_day(name, data, type = "bar") {
         var y_values_plan = [];
         j = 0;
         for (let i = 0; i < x_values.length; i++) {
-                const element = data.plan["data"][j];
+                const element = data.plan[j];
                 
                 if(element && element.date === x_values[i]) {
                         y_values_plan[i] =  element.quantity;
@@ -200,17 +200,19 @@ function init_chart_history(name, data, type = "line") {
                 loaded_graph.destroy();
         }
 
-        var x_values = data["data"].map(function(item){
+        var x_values = data.map(function(item){
                 if('date' in item) {
                         return item.date;
                 } else if ('time' in item) {
                         return (new Date(item.time * 1000)).toLocaleString(); //rest api provide epoch seconds, js wants milliseconds 
+                } else if('plan' in item) {
+                        return item.plan;
                 } else {
                         console.error("Cannot load this type of data");
                 }
         });
 
-        var y_values = data["data"].map(function(item){return item.quantity;});
+        var y_values = data.map(function(item){return item.quantity;});
 
         new Chart(name, {
           type: type,
@@ -249,7 +251,7 @@ function onload_home() {
         rest_receive_today().then(
                 data => { 
                         //take first plan
-                        var first_plan = data.plan["data"][0]["date"];
+                        var first_plan = data.plan[0]["date"];
                         var notify_hour = first_plan.slice(0, first_plan.length - 3);
                         localStorage.setItem("notify_hour", notify_hour);
                         init_chart_day("chart_today", data, "bar");

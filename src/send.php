@@ -16,7 +16,7 @@ if (isset($_POST['quantity']) && is_numeric($_POST['quantity'])) {
         if ($send_prepared_query === false) {
                 error_log(pg_last_error($db_conn));
                 http_response_code(500);
-                return ["status" => "SQL_ERR"];
+                return;
         }
 
         $send_result_query = pg_execute(
@@ -32,10 +32,10 @@ if (isset($_POST['quantity']) && is_numeric($_POST['quantity'])) {
         if ($send_result_query === false) {
                 error_log(pg_last_error($db_conn));
                 http_response_code(500);
-                return ["status" => "SQL_ERR"];
+                return;
         }
 
-        return ["status" => "OK"];
+        return;
 }
 
 ?>

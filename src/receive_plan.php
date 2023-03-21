@@ -26,7 +26,7 @@ if ($plan === "today") {
         if ($today_prepared_query === false) {
                 error_log(pg_last_error($db_conn));
                 http_response_code(500);
-                return ["status" => "SQL_ERR"];
+                return;
         }
 
         $today_result_query = pg_execute(
@@ -42,7 +42,7 @@ if ($plan === "today") {
         if ($today_result_query === false) {
                 error_log(pg_last_error($db_conn));
                 http_response_code(500);
-                return ["status" => "SQL_ERR"];
+                return;
         }
 
         $today_result = [];
@@ -65,7 +65,7 @@ if ($plan === "today") {
         if ($need_prepared_query === false) {
                 error_log(pg_last_error($db_conn));
                 http_response_code(500);
-                return ["status" => "SQL_ERR"];
+                return;
         }
 
         $need_result_query = pg_execute(
@@ -80,7 +80,7 @@ if ($plan === "today") {
         if ($need_result_query === false) {
                 error_log(pg_last_error($db_conn));
                 http_response_code(500);
-                return ["status" => "SQL_ERR"];
+                return;
         }
 
         $need_result = pg_fetch_result($need_result_query, 0);
@@ -90,7 +90,7 @@ if ($plan === "today") {
 
         $num_drink = ceil($need_result / $shot_drink_ml);
         if ($num_drink === 0) {
-                return ["status" => "OK", "data" => [], "need" => 0];
+                return ["plan" => [], "need" => 0];
         }
 
         $time_now = (new DateTime())->getTimestamp();
@@ -116,6 +116,6 @@ if ($plan === "today") {
                 }
         }
 
-        return ["status" => "OK", "data" => $plan_result, "need" => $need_result];
+        return ["plan" => $plan_result, "need" => $need_result];
 }
 ?>
