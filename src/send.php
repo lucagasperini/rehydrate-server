@@ -19,13 +19,18 @@ if (isset($_POST['quantity']) && is_numeric($_POST['quantity'])) {
                 return;
         }
 
+        if (isset($_POST['time']) && is_numeric($_POST['time'])) {
+                $time = $_POST['time'];
+        } else {
+                $time = time();
+        }
         $send_result_query = pg_execute(
                 $db_conn,
                 "send",
                 [
                         $AUTHID,
                         $_POST['quantity'],
-                        time()
+                        $time
                 ]
         );
 

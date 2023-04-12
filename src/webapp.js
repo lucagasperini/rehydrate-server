@@ -75,8 +75,8 @@ async function rest_call(data = {}) {
         }
 }
 
-async function rest_send(quantity) {
-        return rest_call({ token: get_cookie("token"), type: "send", quantity: quantity });
+async function rest_send(quantity, time) {
+        return rest_call({ token: get_cookie("token"), type: "send", quantity: quantity, time: time });
 }
 
 async function rest_receive_today() {
@@ -102,7 +102,7 @@ async function rest_receive_history(mode, time_start = null, time_end = null) {
 }
 
 function onclick_drink_button() {
-        rest_send(document.getElementById("drink_quantity").value);
+        rest_send(document.getElementById("drink_quantity").value); //TODO: set current time
         onload_home();
 }
 
