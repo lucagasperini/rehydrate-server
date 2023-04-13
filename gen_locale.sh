@@ -82,7 +82,7 @@ do
                 $XGETTEXT_BIN -n $source_path --output-dir="$output_dir/" -j --no-location
 
                 echo "Updating copyright to ${po_path} "
-                printed_datetime="$(date +'%Y-%m-%d %H:%M%z')"
+                printed_datetime="$(date +'%F %H:%M%z')"
                 printed_year="$(date +'%Y')"
                 echo "# ReHydrate translations.
 # Copyright (C) $printed_year $PROJECT's $AUTHOR
