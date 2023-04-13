@@ -31,6 +31,7 @@
 : 'Create user of ReHydrate server'
 # =============================================================================
 
+#TODO: Add database as argument
 DATABASE="rehydrate"
 
 if [ -z $1 ] || [ -z $2 ]; then
@@ -39,6 +40,7 @@ if [ -z $1 ] || [ -z $2 ]; then
 fi
 
 USER_NAME=$1
+#TODO: Check if php and postgresql is installed
 USER_PASS=$(php -r "echo hash(\"sha256\", \"$2\");")
 WATER_DAILY="2500"
 
