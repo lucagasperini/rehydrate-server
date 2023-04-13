@@ -32,12 +32,14 @@
 # =============================================================================
 
 
+#TODO: Get all *.php from dir automatically
 SOURCES=(
         "index.php"
         "form_login.php"
         "form_home.php"
 )
 
+#TODO: Add as argument language/languages
 LANGUAGES=(
         "it_IT"
         "en_US"
@@ -47,6 +49,7 @@ AUTHOR="Luca Gasperini <luca.gasperini@xsoftware.it>"
 PROJECT="ReHydrate"
 CREATION_DATE="2023-03-14 04:34+0100"
 
+#TODO: Add --help
 if [ -z $1 ]; then
         BASE_SOURCE_DIR="$(dirname $(realpath $0))/src"
 else
@@ -62,7 +65,7 @@ fi
 
 LOCALE_DOMAIN="messages"
 
-
+#TODO: Check if those program are installed
 XGETTEXT_BIN="/usr/bin/xgettext"
 MSGFMT_BIN="/usr/bin/msgfmt"
 
