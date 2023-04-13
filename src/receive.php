@@ -6,17 +6,6 @@ if (!isset($AUTHID) || $AUTHID === false) {
         exit(0);
 }
 
-if (isset($_POST['plan']) && !empty($_POST['plan'])) {
-        $plan = $_POST['plan'];
-} else {
-        $plan = false;
-}
-
-if ($plan) {
-        return require("receive_plan.php");
-}
-
-
 if (isset($_POST['sum']) && !empty($_POST['sum'])) {
         $mode_sum = $_POST['sum'];
 } else {

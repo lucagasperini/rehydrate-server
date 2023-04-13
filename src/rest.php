@@ -18,6 +18,8 @@ if ($_POST['type'] === "send") {
         $response = require("send.php");
 } else if ($_POST['type'] === "receive") {
         $response = require("receive.php");
+} else if ($_POST['type'] === "plan") {
+        $response = require("plan.php");
 } else {
         error_log("Requested type is invalid.");
         http_response_code(400);

@@ -81,8 +81,8 @@ async function rest_send(quantity, time) {
 
 async function rest_receive_today() {
         return { 
-                history: await rest_call({ token: get_cookie("token"), type: "receive", time_start: "today", sum: "hourly" }),
-                plan: await rest_call({ token: get_cookie("token"), type: "receive", plan: "today"})
+                record: await rest_call({ token: get_cookie("token"), type: "receive", time_start: "today", sum: "hourly" }),
+                future: await rest_call({ token: get_cookie("token"), type: "plan"})
         }
 }
 async function rest_receive_history(mode, time_start = null, time_end = null) {
@@ -150,7 +150,7 @@ function init_chart_day(name, data, type = "bar") {
         var j = 0;
         var y_values_history = [];
         for (let i = 0; i < x_values.length; i++) {
-                const element = data.history[j];
+                const element = data.record[j];
                 
                 if(element && element.date.slice(11) === x_values[i]) {
                         y_values_history[i] =  element.quantity;
@@ -163,7 +163,7 @@ function init_chart_day(name, data, type = "bar") {
         var y_values_plan = [];
         j = 0;
         for (let i = 0; i < x_values.length; i++) {
-                const element = data.plan[j];
+                const element = data.future.plan[j];
                 
                 if(element && element.date === x_values[i]) {
                         y_values_plan[i] =  element.quantity;
@@ -258,7 +258,7 @@ function onload_home() {
         rest_receive_today().then(
                 data => { 
                         //take first plan
-                        var first_plan = data.plan[0]["date"];
+                        var first_plan = data.future.plan[0]["date"];
                         var notify_hour = first_plan.slice(0, first_plan.length - 3);
                         localStorage.setItem("notify_hour", notify_hour);
                         init_chart_day("chart_today", data, "bar");
