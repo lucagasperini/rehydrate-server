@@ -1,5 +1,7 @@
 <?php
 
+// Use values from https://www.php.net/manual/en/timezones.php
+define("LOCALE_TIMEZONE", "Europe/Rome");
 define("LOCALE_DOMAIN", "messages");
 define("LOCALE_PATH", "");
 define("LOCALE_DEFAULT_LANG", "it_IT");
