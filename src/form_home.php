@@ -8,10 +8,10 @@
                         <?php echo _('drink_button'); ?>
                 </button>
 
-                <input type="datetime-local" id="drink_time"/>
                 <label for="drink_time">
                         <?php echo _('label_drink_time'); ?>
                 </label>
+                <input type="datetime-local" id="drink_time" />
 
 
 
