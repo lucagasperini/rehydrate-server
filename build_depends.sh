@@ -34,6 +34,7 @@
 if [ ! -d "src/chart-js" ]; then
     echo "Building chart.js"
     cd 3rd-party/Chart-js
+    #TODO: Check if npm is installed
     npm install && npm run build
     cd ../../
     mkdir src/chart-js
