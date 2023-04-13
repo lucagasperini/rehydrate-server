@@ -11,6 +11,7 @@ $loaded_locale_lang = setlocale(LC_ALL, $locale_lang);
 if ($locale_lang !== $loaded_locale_lang) {
         echo ("ERROR: Can't load locale language.\n");
         echo ($loaded_locale_lang);
+        http_response_code(500);
         exit(1);
 }
 
@@ -18,6 +19,7 @@ $loaded_locale_dir = bindtextdomain(LOCALE_DOMAIN, LOCALE_PATH);
 if (LOCALE_PATH !== $loaded_locale_dir) {
         echo ("ERROR: Can't load locale directory.\n");
         echo ($loaded_locale_dir);
+        http_response_code(500);
         exit(1);
 }
 
@@ -26,6 +28,7 @@ $loaded_textdomain = textdomain(LOCALE_DOMAIN);
 if (LOCALE_DOMAIN !== $loaded_textdomain) {
         echo ("ERROR: Can't load locale domain.\n");
         echo ($loaded_textdomain);
+        http_response_code(500);
         exit(1);
 }
 

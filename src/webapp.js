@@ -102,7 +102,14 @@ async function rest_receive_history(mode, time_start = null, time_end = null) {
 }
 
 function onclick_drink_button() {
-        rest_send(document.getElementById("drink_quantity").value); //TODO: set current time
+        time = document.getElementById("drink_time").value;
+        
+        if(time == "") {
+                epoch_time = Math.floor(new Date().getTime() / 1000);
+        } else {
+                epoch_time = Math.floor(new Date(time).getTime() / 1000);
+        }
+        rest_send(document.getElementById("drink_quantity").value, epoch_time);
         onload_home();
 }
 
