@@ -82,7 +82,7 @@ if ($mode_sum === "hourly") {
                 $time_start,
                 $time_end,
                 "receive_" . $mode_sum,
-                "SELECT SUM(quantity) as quantity, to_char(to_timestamp(time)::timestamp, 'YYYY-MM-DD HH24:00') as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date"
+                "SELECT SUM(quantity) as quantity, to_char(to_timestamp(time)::timestamp, 'YYYY-MM-DD HH24:00') as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date ORDER BY date"
         );
 } else if ($mode_sum === "daily") {
         return receive_sum(
@@ -91,7 +91,7 @@ if ($mode_sum === "hourly") {
                 $time_start,
                 $time_end,
                 "receive_" . $mode_sum,
-                "SELECT SUM(quantity) as quantity, to_timestamp(time)::date as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date"
+                "SELECT SUM(quantity) as quantity, to_timestamp(time)::date as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date ORDER BY date"
         );
 } else if ($mode_sum === "weekly") {
         return receive_sum(
@@ -100,7 +100,7 @@ if ($mode_sum === "hourly") {
                 $time_start,
                 $time_end,
                 "receive_" . $mode_sum,
-                "SELECT SUM(quantity) as quantity, to_char(to_timestamp(time)::date, 'YYYY-IW') as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date"
+                "SELECT SUM(quantity) as quantity, to_char(to_timestamp(time)::date, 'YYYY-IW') as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date ORDER BY date"
         );
 } else if ($mode_sum === "monthly") {
         return receive_sum(
@@ -109,7 +109,7 @@ if ($mode_sum === "hourly") {
                 $time_start,
                 $time_end,
                 "receive_" . $mode_sum,
-                "SELECT SUM(quantity) as quantity, to_char(to_timestamp(time)::date, 'YYYY-MM') as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date"
+                "SELECT SUM(quantity) as quantity, to_char(to_timestamp(time)::date, 'YYYY-MM') as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date ORDER BY date"
         );
 } else if ($mode_sum === "yearly") {
         return receive_sum(
@@ -118,7 +118,7 @@ if ($mode_sum === "hourly") {
                 $time_start,
                 $time_end,
                 "receive_" . $mode_sum,
-                "SELECT SUM(quantity) as quantity, extract(year from to_timestamp(time)::date) as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date"
+                "SELECT SUM(quantity) as quantity, extract(year from to_timestamp(time)::date) as date FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 GROUP BY date ORDER BY date"
         );
 } else {
         return receive_sum(
@@ -127,7 +127,7 @@ if ($mode_sum === "hourly") {
                 $time_start,
                 $time_end,
                 "receive_nosum",
-                "SELECT quantity as quantity, time FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3"
+                "SELECT quantity as quantity, time FROM history WHERE fk_token_id IN (SELECT id FROM token WHERE fk_name = (SELECT fk_name FROM token where id=$1) ) AND time >= $2 AND time <= $3 ORDER BY time"
         );
 }
 
