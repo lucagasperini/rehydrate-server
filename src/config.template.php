@@ -12,5 +12,7 @@ define("DB_PASS", "");
 define("DB_HOST", "localhost");
 define("DB_PORT", 5432);
 define("AUTH_TOKEN_LENGTH_BYTES", 256);
+define("APP_NAME", "ReHydrate");
+define("APP_VERSION", 1000000); // FORMAT MAJOR-MINOR-PATCH as M-m-P. Digits are MMMmmmPPP
 
 ?>
