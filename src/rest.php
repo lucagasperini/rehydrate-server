@@ -1,4 +1,7 @@
 <?php
+
+require("config.php");
+
 header('Content-Type: application/json; charset=utf-8');
 
 if($_POST['type'] === "hello") {
