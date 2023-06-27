@@ -4,7 +4,7 @@ require("config.php");
 
 header('Content-Type: application/json; charset=utf-8');
 
-if($_POST['type'] === "hello") {
+if(isset($_POST['type']) && $_POST['type'] === "hello") {
         echo json_encode(['name' => APP_NAME, 'version' => APP_VERSION]);
         http_response_code(200);
         exit(0);
