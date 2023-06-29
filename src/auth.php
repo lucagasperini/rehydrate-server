@@ -1,7 +1,5 @@
 <?php
 
-require("config.php");
-
 $db_conn = pg_connect(
         "host=" . DB_HOST .
         " port=" . DB_PORT .
