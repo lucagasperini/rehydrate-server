@@ -6,8 +6,6 @@ if (!isset($AUTHID) || $AUTHID === false) {
         exit(0);
 }
 
-include_once("time.php");
-
 if (isset($_POST['quantity']) && is_numeric($_POST['quantity'])) {
 
         $send_prepared_query = pg_prepare(
@@ -25,6 +23,7 @@ if (isset($_POST['quantity']) && is_numeric($_POST['quantity'])) {
         if (isset($_POST['time']) && is_numeric($_POST['time'])) {
                 $time = $_POST['time'];
         } else {
+                require('time.php');
                 $time = get_user_time($db_conn, $AUTHID);
         }
         $send_result_query = pg_execute(

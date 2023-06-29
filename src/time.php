@@ -1,4 +1,4 @@
-<?
+<?php
 
 function get_user_timezone($db_conn, $userid)
 {

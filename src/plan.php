@@ -6,8 +6,6 @@ if (!isset($AUTHID) || $AUTHID === false) {
         exit(0);
 }
 
-include_once("time.php");
-
 $time_start = strtotime("today", time());
 $time_end = time();
 
@@ -83,9 +81,12 @@ $plan_result = [];
 $shot_drink_ml = 400;
 
 $num_drink = ceil($need_result / $shot_drink_ml);
-if ($num_drink === 0) {
+
+if ($num_drink == 0) {
         return ["plan" => [], "need" => 0];
 }
+
+require("time.php");
 
 $time_now = get_user_time($db_conn, $AUTHID);
 
@@ -96,7 +97,6 @@ if ($last_drink_hour == $current_hour) {
 } else {
         $starting_hour = $current_hour;
 }
-
 
 $remaining_hours = 23 - $starting_hour;
 

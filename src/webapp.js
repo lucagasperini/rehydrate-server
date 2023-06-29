@@ -161,15 +161,17 @@ function init_chart_day(name, data, type = "bar") {
         }
 
         var y_values_plan = [];
-        j = 0;
-        for (let i = 0; i < x_values.length; i++) {
-                const element = data.future.plan[j];
-                
-                if(element && element.date === x_values[i]) {
-                        y_values_plan[i] =  element.quantity;
-                        j++;
-                } else {
-                        y_values_plan[i] = 0;
+        if(Array.isArray(data.future)) {
+                j = 0;
+                for (let i = 0; i < x_values.length; i++) {
+                        const element = data.future.plan[j];
+                        
+                        if(element && element.date === x_values[i]) {
+                                y_values_plan[i] =  element.quantity;
+                                j++;
+                        } else {
+                                y_values_plan[i] = 0;
+                        }
                 }
         }
 
@@ -257,9 +259,12 @@ function onload_home() {
         Chart.defaults.color="cyan";
         rest_receive_today().then(
                 data => { 
-                        //take first plan
-                        var first_plan = data.future.plan[0]["date"];
-                        var notify_hour = first_plan.slice(0, first_plan.length - 3);
+                        console.log(data);
+                        if(Array.isArray(data.future)) {
+                                //take first plan
+                                var first_plan = data.future.plan[0]["date"];
+                                var notify_hour = first_plan.slice(0, first_plan.length - 3);
+                        }
                         localStorage.setItem("notify_hour", notify_hour);
                         init_chart_day("chart_today", data, "bar");
                 }
