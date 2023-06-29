@@ -259,7 +259,6 @@ function onload_home() {
         Chart.defaults.color="cyan";
         rest_receive_today().then(
                 data => { 
-                        console.log(data);
                         if(Array.isArray(data.future)) {
                                 //take first plan
                                 var first_plan = data.future.plan[0]["date"];
