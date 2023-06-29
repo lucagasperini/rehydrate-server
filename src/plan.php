@@ -6,6 +6,8 @@ if (!isset($AUTHID) || $AUTHID === false) {
         exit(0);
 }
 
+include_once("time.php");
+
 $time_start = strtotime("today", time());
 $time_end = time();
 
@@ -85,7 +87,7 @@ if ($num_drink === 0) {
         return ["plan" => [], "need" => 0];
 }
 
-$time_now = (new DateTime())->getTimestamp();
+$time_now = get_user_time($db_conn, $AUTHID);
 
 $current_hour = date("H", $time_now);
 $last_drink_hour = substr($today_result[0]['date'], 0, -3);

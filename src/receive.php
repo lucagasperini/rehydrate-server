@@ -40,6 +40,34 @@ if (isset($_POST['time_end']) && !empty($_POST['time_end']) && is_numeric($_POST
 
 function receive_sum($db_conn, $token_id, $time_start, $time_end, $query_label, $query)
 {
+        include_once("time.php");
+        $timezone = get_user_timezone($db_conn, $token_id);
+        $set_timezone_query = pg_prepare(
+                $db_conn,
+                'receive_set_timezone',
+                "set time zone $1"
+        );
+
+        if ($set_timezone_query === false) {
+                error_log(pg_last_error($db_conn));
+                http_response_code(500);
+                return;
+        }
+
+        $result_timezone_query = pg_execute(
+                $db_conn,
+                'receive_set_timezone',
+                [
+                        $timezone
+                ]
+        );
+
+        if ($result_timezone_query === false) {
+                error_log(pg_last_error($db_conn));
+                http_response_code(500);
+                return;
+        }
+        
         $prepared_query = pg_prepare(
                 $db_conn,
                 $query_label,

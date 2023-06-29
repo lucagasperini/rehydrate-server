@@ -1,7 +1,8 @@
 CREATE TABLE account (
         name varchar(16) primary key,
         pass char(64) NOT NULL,
-        daily_need int NOT NULL
+        daily_need int NOT NULL,
+        timezone varchar(64)
 );
 
 CREATE TABLE token (
