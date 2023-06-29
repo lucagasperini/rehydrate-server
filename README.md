@@ -113,11 +113,28 @@ Notice that you are sending clear credential, so make sure you are on `localhost
 > 07c546509aded72ee673cd43ee1018e60483670940b96a47bff6a0c08859ef01d1b4c22afbdb3e7351768cf08e98a9686d8fcfb7ea90e805bbe05f05b5e94b9b16f926157fce8376dd4e98f76c159cd60e5643641d697c25281cadba054e982200205796a68743d46c4897ff3a483b9b02391bc697f7a8259d3c89c56a6dd3272143a5d7ee5e6df1ca79e49c0d29e3e316e37bcf4c0962bdaed5c0fcb0fbcb8ab34a14e37d942fc259daac1d411f9f2a373c8ff6f648d6d1432d1f8b5d5565e2834df157793fda25d37dde69bc89007978fbefbd2e14108a2f367f6e5e915a8e2f8e543a5ae5d4d798690df8630d277a31ee573d1c6401f8a0e6dc20adebb604
 
 ---
+##### Hello
+This action will provide information about the server. 
+
+**Parameters:**
+- type: `hello`
+
+**Return:**
+
+- If successful, it will return HTTP CODE 200.
+
+**Example:**
+
+`curl -X POST -d 'type=hello' http://localhost:8000/rest.php`
+> {"name":"ReHydrate","version":1000000}
+
+---
 ##### Send
 This action will provide to the server a new record that user drank an amount of water. 
 
 **Parameters:**
 - type: `send`
+- time: Any number is considered as unix timestamp
 - quantity: Number of amount on mL of water drank 
 
 **Return:**
