@@ -33,15 +33,23 @@
 
 #TODO: Add database as argument
 DATABASE="rehydrate"
+TIMEZONE="Europe/Rome"
+WATER_DAILY="2500"
 
 if [ -z $1 ] || [ -z $2 ]; then
         echo "Cannot add user without username and password!"
         exit 1
 fi
 
+# Use values from https://www.php.net/manual/en/timezones.php
+if [ -z $3 ]; then
+        echo "Not provided a timezone, using default: $TIMEZONE"
+else
+        TIMEZONE=$3
+fi
+
 USER_NAME=$1
 #TODO: Check if php and postgresql is installed
 USER_PASS=$(php -r "echo hash(\"sha256\", \"$2\");")
-WATER_DAILY="2500"
 
-sudo -u postgres psql -d $DATABASE --command="INSERT INTO account VALUES ('$USER_NAME', '$USER_PASS',$WATER_DAILY);"
+sudo -u postgres psql -d $DATABASE --command="INSERT INTO account VALUES ('$USER_NAME', '$USER_PASS',$WATER_DAILY, $TIMEZONE);"
