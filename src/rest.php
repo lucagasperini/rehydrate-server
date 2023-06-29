@@ -18,8 +18,6 @@ if (!isset($AUTHID) || $AUTHID === false) {
         exit(0);
 }
 
-date_default_timezone_set(LOCALE_TIMEZONE);
-
 $response = [];
 
 if ($_POST['type'] === "send") {
