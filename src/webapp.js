@@ -28,7 +28,7 @@ function delete_cookie(cname)
 }
 
 async function auth_call(user, pass) {
-        const response = await fetch('auth.php', {
+        const response = await fetch('rest.php', {
                 method: 'POST',
                 body: new URLSearchParams({u: user, p: pass}),
                 mode: "cors", 
