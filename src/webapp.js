@@ -161,7 +161,7 @@ function init_chart_day(name, data, type = "bar") {
         }
 
         var y_values_plan = [];
-        if(Array.isArray(data.future)) {
+        if(Array.isArray(data.future.plan)) {
                 j = 0;
                 for (let i = 0; i < x_values.length; i++) {
                         const element = data.future.plan[j];
